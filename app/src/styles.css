@@ -1,0 +1,638 @@
+/* Pentimento — the underpainting.
+   Three voices, enforced in type:
+   - the machine speaks in a grotesque (--machine)
+   - the human corrects in an italic serif (--human)
+   - the record keeps evidence in mono (--record)
+   Red ink belongs exclusively to acts of disagreement and human control. */
+
+:root {
+  --canvas: #16110c;
+  --canvas-lift: #1d1710;
+  --ink: #ece4d6;
+  --soft: #c8bca8;
+  /* both tiers hold ≥4.5:1 on the canvas — small mono text must stay legible */
+  --muted: #9c9080;
+  --faint: #8a7f70;
+  --line: #2d2618;
+  --red: #e8502e;
+  --machine: 'Space Grotesk', system-ui, sans-serif;
+  --human: 'Fraunces', Georgia, serif;
+  --record: 'IBM Plex Mono', Consolas, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--canvas);
+}
+
+body {
+  font-family: var(--machine);
+  color: var(--ink);
+  background: radial-gradient(1200px 800px at 50% -10%, var(--canvas-lift) 0%, var(--canvas) 60%);
+  background-color: var(--canvas);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 96px 28px 140px;
+}
+
+.wordmark {
+  font-family: var(--record);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  position: fixed;
+  top: 28px;
+  left: 32px;
+  z-index: 10;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.wordmark:hover {
+  color: var(--red);
+}
+
+/* ---- typography roles ---- */
+
+.observation {
+  font-family: var(--machine);
+  font-size: 31px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.marker {
+  font-family: var(--record);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.interpretation {
+  font-family: var(--machine);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--soft);
+}
+
+.memoir-paragraph {
+  font-family: var(--machine);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.memoir-paragraph em {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--soft);
+}
+
+/* ---- evidence (the record) ---- */
+
+.evidence-block {
+  border-left: 1.5px solid var(--line);
+  padding-left: 22px;
+  margin: 34px 0;
+}
+
+.evidence-label {
+  font-family: var(--record);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.film-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 4px 0;
+  font-size: 15px;
+}
+
+.film-date {
+  font-family: var(--record);
+  font-size: 11px;
+  color: var(--faint);
+  min-width: 92px;
+  flex-shrink: 0;
+}
+
+.film-title {
+  font-family: var(--machine);
+  font-size: 15.5px;
+  color: var(--soft);
+}
+
+.film-year {
+  font-family: var(--record);
+  color: var(--faint);
+  font-size: 11px;
+  margin-left: 6px;
+}
+
+.film-note {
+  font-family: var(--human);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+.quote-text {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--soft);
+}
+
+.quote-source {
+  font-family: var(--record);
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.pattern-text {
+  font-family: var(--machine);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--soft);
+}
+
+/* ---- controls: every button is the human's hand ---- */
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+.quiet-button {
+  font-family: var(--record);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+.quiet-button:hover {
+  border-bottom-color: var(--red);
+}
+
+.reject-link {
+  display: block;
+  font-family: var(--record);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  padding: 10px 0 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease;
+}
+
+.reject-link:hover {
+  color: var(--red);
+}
+
+.fork-prompt {
+  font-family: var(--record);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.fork-choice {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: transparent;
+  margin-bottom: 12px;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.15s ease;
+}
+
+.fork-choice:hover {
+  border-color: var(--muted);
+  background: rgba(236, 228, 214, 0.03);
+}
+
+.fork-choice:active {
+  transform: scale(0.99);
+}
+
+.fork-choice .choice-label {
+  font-family: var(--machine);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  display: block;
+}
+
+.fork-choice .choice-detail {
+  font-family: var(--record);
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* ---- naming and correcting: the reader's own hand, in italic serif ---- */
+
+.name-suggestion {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--soft);
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  margin: 0 10px 10px 0;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.name-suggestion:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.name-input,
+.words-input {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 2px;
+  width: 100%;
+  outline: none;
+  resize: none;
+  line-height: 1.6;
+  transition: border-color 0.3s ease;
+}
+
+.name-input:focus,
+.words-input:focus {
+  border-bottom-color: var(--red);
+}
+
+.name-input::placeholder,
+.words-input::placeholder {
+  color: var(--faint);
+  font-style: italic;
+}
+
+/* ---- the memoir ---- */
+
+.memoir-title {
+  font-family: var(--machine);
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.memoir-subtitle {
+  font-family: var(--record);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 64px;
+}
+
+.memoir-chapter {
+  margin-bottom: 56px;
+}
+
+.memoir-chapter-name {
+  font-family: var(--record);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+
+.memoir-chapter-name.withdrawn {
+  color: var(--muted);
+}
+
+.memoir-clickable {
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+  padding: 4px 8px;
+  margin: -4px -8px;
+}
+
+.memoir-clickable:hover {
+  background: rgba(232, 80, 46, 0.06);
+}
+
+.why-hint {
+  font-family: var(--record);
+  font-size: 10.5px;
+  color: var(--faint);
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.memoir-chapter:hover .why-hint {
+  color: var(--muted);
+}
+
+.closing-note {
+  font-family: var(--machine);
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  border-top: 1px solid var(--line);
+  padding-top: 40px;
+  margin-top: 24px;
+}
+
+.closing-note em {
+  font-family: var(--human);
+  font-style: italic;
+}
+
+.progress-dots {
+  position: fixed;
+  top: 30px;
+  right: 32px;
+  display: flex;
+  gap: 8px;
+}
+
+.progress-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--faint);
+  transition: background-color 0.4s ease;
+}
+
+.progress-dot.active {
+  background: var(--red);
+}
+
+.progress-dot.done {
+  background: var(--muted);
+}
+
+/* ---- phase transitions ---- */
+
+.staged {
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+
+.staged.leaving {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* ---- disagreement: red ink, scars, marginalia ---- */
+
+.struck {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--red);
+  color: var(--muted);
+}
+
+.retraction {
+  font-family: var(--record);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+.margin-note {
+  border-left: 2px solid var(--red);
+  padding: 4px 0 4px 18px;
+  margin-top: 22px;
+}
+
+.margin-note-label {
+  font-family: var(--record);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.margin-note-text {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ---- opening ---- */
+
+.specimen {
+  border-left: 1.5px solid var(--line);
+  padding-left: 22px;
+  max-width: 480px;
+}
+
+.specimen-label {
+  font-family: var(--record);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 12px;
+}
+
+.specimen .margin-note {
+  margin-top: 14px;
+}
+
+.steps {
+  margin-top: 40px;
+  max-width: 480px;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  font-family: var(--machine);
+  font-size: 15px;
+  color: var(--soft);
+  padding: 7px 0;
+}
+
+.step-num {
+  font-family: var(--record);
+  font-size: 10.5px;
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+.gloss {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 15.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 460px;
+}
+
+.epilogue-actions {
+  margin-top: 36px;
+}
+
+/* ---- import ---- */
+
+.import-row {
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  max-width: 500px;
+}
+
+.import-note {
+  font-family: var(--record);
+  font-size: 10px;
+  color: var(--faint);
+  margin-top: 8px;
+  letter-spacing: 0.03em;
+}
+
+.import-message {
+  font-family: var(--human);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--soft);
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+/* ---- about ---- */
+
+.about-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 800px at 50% -10%, var(--canvas-lift) 0%, var(--canvas) 60%);
+  background-color: var(--canvas);
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.about-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 110px 28px 120px;
+}
+
+.about-close {
+  position: fixed;
+  top: 28px;
+  right: 32px;
+  z-index: 51;
+}
+
+/* ---- print: the draft leaves the screen, scars included ---- */
+
+@media print {
+  :root {
+    --canvas: #ffffff;
+    --canvas-lift: #ffffff;
+    --ink: #1c1712;
+    --soft: #3a332a;
+    --muted: #6b6154;
+    --faint: #9a917f;
+    --line: #ddd5c6;
+    --red: #b23920;
+  }
+  body {
+    background: #ffffff;
+  }
+  .wordmark {
+    position: static;
+    margin-bottom: 32px;
+  }
+  .progress-dots,
+  .why-hint,
+  .epilogue-actions,
+  button {
+    display: none !important;
+  }
+  .page {
+    max-width: none;
+    padding: 24px 8mm;
+  }
+  .memoir-chapter {
+    break-inside: avoid;
+  }
+}
+
+/* ---- accessibility ---- */
+
+:focus-visible {
+  outline: 1.5px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staged,
+  .staged.leaving {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+  .staged.leaving {
+    opacity: 0;
+  }
+}
