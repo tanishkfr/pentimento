@@ -1,76 +1,54 @@
 # Pentimento — Case Study
 
-**A memoir of your archive, with a right of reply.**
+## A document that must yield to its subject
 
-*(formerly Taste Trails, then briefly Second Draft — RESEARCH.md, E4 and E6)*
+Pentimento investigates one question: **what should software owe a person when it narrates their life from an archive?**
 
-Status: working draft. This document and the product must tell the same story; where the study below is unrun, this document says so.
+The answer is not a better summary or a friendlier correction form. It is a different authorship relationship. A machine may propose an account, but the person described retains sovereign authority over the final document.
 
----
+## The contribution: sovereign ink
 
-## Reviewer identity
+The experience begins inside a complete, contested memoir. There is no explanatory landing page and no chapter wizard. Every machine claim is already part of the document, with its evidence available in place.
 
-Pentimento is not a movie diary, recommendation tool, or taste profile. It is a working grammar for contesting machine autobiography.
+The subject can let a claim stand, reframe it, or strike it. Those actions do not produce detached comments. They alter the document's composition:
 
-**Research question:** What should software owe a person when it narrates their life from an archive?
+- A standing claim remains machine-authored and evidence-bound.
+- A reframed claim records the subject's chosen emphasis.
+- A struck claim loses narrative authority. The subject's words become the main text, while the machine's withdrawn sentence remains underneath as a visible underpainting.
+- Every later human revision remains in lineage. The interface never quietly restores a claim the subject withdrew.
 
-**Core thesis:** Software that narrates a person owes that person a right of reply.
+The central interaction is therefore not annotation. It is **recomposition under human authority**. The machine's document must physically make room for the person it describes.
 
-**Contribution:** A correction model where a machine claim remains evidence-bound, can be struck by its subject, and returns in the second draft as a visible scar rather than a hidden edit.
+## Why a movie archive
 
-**Interaction grammar:** Receive interpretation -> inspect evidence -> accept, reframe, or strike -> revision preserves disagreement.
+Movie logs are intimate enough to invite interpretation but ordinary enough to expose the danger clearly. A pattern in dates and titles may support a claim about viewing; it cannot settle what that period meant. Pentimento keeps that boundary visible.
 
-**Cognitive verb:** Contest.
-
-**Emotional arc:** Recognition -> discomfort -> resistance -> authorship.
-
-**Reviewer takeaway:** This is the project that proves Tanishk can identify an ethical asymmetry and make the interface structurally submit to the person it describes.
-
-Two weeks later, the reviewer should remember:
-
-> Pentimento was the one where the machine's sentence stayed visible after I struck it, and my correction became the draft.
-
----
-## The observation
-
-Algorithmic autobiography is already mass-produced. Every December, hundreds of millions of people are narrated by machines — year-in-reviews, auto-curated memory reels, "your top genre was..." These stories are asserted, not argued: they cite no evidence, admit no uncertainty, and accept no correction. There is no way to tell Spotify Wrapped that March was the month your father died, not your "horror phase."
-
-Nobody has designed the grammar of talking back.
-
-## The research question
-
-> When software narrates a person's life from their archive, what does the person need in order to contest, correct, and co-own that story?
-
-The originating question — how systems might help people recognize change in their cultural identity through the media they consume — survives as the first domain instance. Movie archives (Letterboxd) are the first medium.
+Maya's archive is an explicitly authored research probe. A visitor may also import a Letterboxd CSV. Imported data stays in the browser. In both editions, claims remain tied to inspectable records, and the system may decline to interpret when the archive cannot support a reading.
 
 ## The interaction grammar
 
-**Propose → show evidence → accept, reframe, or strike → correction outranks reading → the revision carries the scar.**
+**Read → inspect → contest → recompose → preserve lineage.**
 
-The artifact is a memoir, written together:
+The visitor is not asked to complete a correction workflow. They edit the authority structure of a document. Only after every claim has been addressed can the second draft settle. Its final form is not a machine summary with accepted feedback; it is a joint record in which disagreement remains legible.
 
-1. **Every sentence is inspectable.** Click any claim in the finished memoir and its evidence reopens — dates, titles, the person's own review fragments. No assertion without evidence.
-2. **Every reading can be struck.** A rejected interpretation is not deleted; it stays in the draft — claim struck through, retraction recorded, the reader's correction kept in the margin. Disagreement is part of the record.
-3. **The system writes a second draft.** Where readings were struck, the revision defers: the reader's words lead, and the first draft's claim stays visible inside the revision as a scar. The document shows two authors disagreeing their way to an account — a pentimento in the painter's sense, and the product's namesake.
-4. **Uncertainty is the reader's to set.** The system asks how confident the prose may be, and hedges accordingly. It never graduates to certainty on its own.
-5. **Drafts print, scars included.** The memoir is designed to leave the screen.
+## Emotional journey
 
-## Two archives
+1. **Recognition:** the document feels plausibly personal.
+2. **Suspicion:** evidence reveals how much interpretation exceeds observation.
+3. **Resistance:** the subject withdraws or redirects a claim.
+4. **Authorship:** their correction becomes the document's leading voice.
+5. **Residue:** the machine's former reading remains visible, but no longer governs the account.
 
-**Maya's archive** is an authored research probe — labeled as such inside the product — three chapters that teach the grammar: a contested beginning (catalyst or marker?), a pattern hardening into taste (with the reader setting the hedge), and the confound.
+## What the artifact proves
 
-**Your archive** is real: a Letterboxd export, parsed and read entirely in the browser, kept nowhere. The engine computes chapters from observable evidence only — pace breaks, silences and returns, long-gap rewatches, and the found/fed ratio — and writes hedged prose that cites only rows the reader can inspect. Below evidence thresholds it declines to interpret; silence is a designed behavior.
+The artifact demonstrates an end-to-end interaction grammar for evidence-bound, contestable algorithmic autobiography. It proves that a correction can outrank a machine claim without erasing the history of disagreement.
 
-## The confound, faced
+It does not yet prove how people will use this authority in practice. A participant study remains future work. Its useful output would not merely be a trust score; it would be a corpus of withdrawn machine sentences paired with the words people chose instead.
 
-The strongest objection to reading any consumption archive: it records what the feeds served as much as what the person sought. The system measures what it can — films watched in their release window versus films found years later — and refuses the rest. The memoir's last question, *how much of the drift was yours?*, is left where it belongs: with the reader.
+## What Pentimento refuses
 
-## What is proven, what is not
+No personality type. No scores or achievements. No claim without evidence. No detached feedback queue. No silent edit that makes the system appear to have been right all along. No universal template borrowed from the portfolio's other projects.
 
-Proven by the artifact: the grammar works end-to-end on real data; interpretations remain evidence-bound, contestable, and uncertainty-calibrated; corrections visibly outrank readings in the revision; the theory survived two contradictions found during building (E1, E2 in RESEARCH.md) and one reframe it forced (E4).
+## The image that should remain
 
-Not yet proven: that real users strike, what they say when they do, and whether contestability builds trust. The study is written and runnable (STUDY.md), its instrument is built into the product (the session-record download), and its positioning is literature-checked: the contestable-AI literature (Alfrink et al. 2022; Vaccaro et al.) addresses consequential decisions, and empirical Wrapped studies (Annabell & Rasmussen 2025) document users' "powerlessness" at machine-assigned identities — Pentimento extends contestability to exactly that undesigned case. The study's second purpose beyond validation: **the corrections corpus** — struck machine sentences paired with what people said instead — as a first taxonomy of how algorithmic autobiographies fail, in the words of the people they are about.
-
-## Craft decisions
-
-No posters, anywhere — identity is carried by dates and the person's own six-word reviews. Serif prose for meaning, sans small-caps for apparatus, a strike in accent ink for disagreement. Motion is entrance-and-yield only, and every animation answers a question: evidence *unfolds*, phases *yield*, the memoir *settles*, the scar *stays*. Reduced-motion preferences are honored. The first thing a visitor sees is a struck sentence and a human correction — the whole thesis, before a single word of explanation.
+Five years later, Pentimento should be remembered as the document where a human sentence forced the machine's prose to move—and the rejected machine sentence remained beneath it like paint under paint.
