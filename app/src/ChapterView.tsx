@@ -221,38 +221,57 @@ export function ChapterView({
   )
 }
 
-// A withdrawn reading stays visible: the claim struck through, the
-// retraction beneath it, the reader's correction in the margin.
+// The signature moment: the machine's claim visibly drains into a ghost —
+// scale settles, a red line draws itself across it — while the reader's own
+// words rise into the position the claim used to hold, in the human voice,
+// at the size meaning gets. The hierarchy inversion IS the right of reply,
+// made physical. The ghost never leaves; it just stops being in charge.
 export function StruckReading({ record }: { record: ChapterRecord }) {
+  const hasCorrection = !!record.userWords
+
   return (
-    <div>
-      <motion.p
-        className="memoir-paragraph struck"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
+    <div className="strike-moment">
+      <motion.div
+        className="strike-claim-wrap"
+        initial={{ opacity: 0, scale: 1.22 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.65, ease: [0.2, 0.6, 0.2, 1] }}
+        style={{ transformOrigin: 'left top' }}
       >
-        {record.chapter.claim}
-      </motion.p>
+        <span className="strike-claim">{record.chapter.claim}</span>
+        <motion.span
+          className="strike-line"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.55, duration: 0.5, ease: 'easeOut' }}
+        />
+      </motion.div>
+
       <motion.div
         className="retraction"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.8 }}
+        transition={{ delay: 1.05, duration: 0.6 }}
       >
         Reading withdrawn. The evidence remains.
       </motion.div>
-      {record.userWords && (
-        <motion.div
-          className="margin-note"
-          initial={{ opacity: 0, x: -6 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-        >
-          <div className="margin-note-label">the correction</div>
-          <div className="margin-note-text">“{record.userWords}”</div>
-        </motion.div>
-      )}
+
+      <motion.div
+        className="strike-primary"
+        initial={{ opacity: 0, y: 16, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 1.4, duration: 0.9, ease: [0.2, 0.6, 0.2, 1] }}
+      >
+        <div className="strike-primary-label">what stands instead</div>
+        {hasCorrection ? (
+          <p className="strike-correction-text">“{record.userWords}”</p>
+        ) : (
+          <p className="strike-blank-text">
+            Nothing — and that is its own kind of answer. Something happened here that the
+            archive can see and cannot name.
+          </p>
+        )}
+      </motion.div>
     </div>
   )
 }

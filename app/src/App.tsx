@@ -3,7 +3,8 @@ import { MotionConfig, motion } from 'framer-motion'
 import { chapters as mayaChapters, type Chapter } from './data'
 import { ChapterView, StruckReading, type ChapterRecord } from './ChapterView'
 import { Evidence } from './Evidence'
-import { computeChapters, parseLetterboxdCsv } from './importer'
+import { computeChapters, parseLetterboxdCsv, DeclinedToInterpret } from './importer'
+import { corpus } from './corpus'
 import { useStaged } from './useStaged'
 
 type Source = 'maya' | 'import'
@@ -44,13 +45,23 @@ export default function App() {
   }
 
   const [showAbout, setShowAbout] = useState(false)
+  const [showCorpus, setShowCorpus] = useState(false)
 
   return (
     <MotionConfig reducedMotion="user">
       <button className="wordmark" onClick={() => setShowAbout(true)} aria-haspopup="dialog">
         Pentimento
       </button>
-      {showAbout && <About onClose={() => setShowAbout(false)} />}
+      {showAbout && (
+        <About
+          onClose={() => setShowAbout(false)}
+          onOpenCorpus={() => {
+            setShowAbout(false)
+            setShowCorpus(true)
+          }}
+        />
+      )}
+      {showCorpus && <CorpusView onClose={() => setShowCorpus(false)} />}
       {phase.kind !== 'opening' && (
         <div className="progress-dots" aria-hidden>
           {chapters.map((c, i) => (
@@ -91,7 +102,7 @@ export default function App() {
   )
 }
 
-function About({ onClose }: { onClose: () => void }) {
+function About({ onClose, onOpenCorpus }: { onClose: () => void; onOpenCorpus: () => void }) {
   return (
     <div
       className="about-overlay"
@@ -136,9 +147,68 @@ function About({ onClose }: { onClose: () => void }) {
           nowhere. A participant study is planned; this page is its instrument, and the
           session download is its record — shared only if you choose to.
         </p>
-        <p className="interpretation">
+        <p className="interpretation" style={{ marginBottom: 28 }}>
           Software that narrates a person owes that person a right of reply.
         </p>
+        <button className="reject-link" onClick={onOpenCorpus}>
+          → the corrections corpus (n={corpus.length})
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// Built and waiting: a gallery of real struck machine sentences beside what
+// real people said instead, grouped by how the reading failed. It ships
+// honestly empty — see corpus.ts — and turns on the moment a study runs.
+function CorpusView({ onClose }: { onClose: () => void }) {
+  const groups = new Map<string, typeof corpus>()
+  for (const entry of corpus) {
+    const list = groups.get(entry.failureMode) ?? []
+    list.push(entry)
+    groups.set(entry.failureMode, list)
+  }
+
+  return (
+    <div
+      className="about-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="The corrections corpus"
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') onClose()
+      }}
+    >
+      <button className="about-close reject-link" onClick={onClose} autoFocus>
+        close
+      </button>
+      <div className="about-inner">
+        <div className="marker">The corrections corpus</div>
+        {corpus.length === 0 ? (
+          <>
+            <p className="memoir-paragraph" style={{ marginBottom: 28 }}>
+              No sessions yet. This gallery is built and waiting — it fills the moment real
+              participants strike a reading and say what was true instead (see STUDY.md).
+            </p>
+            <p className="pattern-text">
+              When it does: every entry here will be a real machine claim, struck, beside
+              the real words a person used to correct it — grouped by how the reading
+              failed. Nothing here will be authored or invented. That is the whole point.
+            </p>
+          </>
+        ) : (
+          [...groups.entries()].map(([mode, entries]) => (
+            <div key={mode} style={{ marginBottom: 40 }}>
+              <div className="memoir-chapter-name">{mode}</div>
+              {entries.map((entry, i) => (
+                <div className="corpus-entry" key={i}>
+                  <div className="corpus-claim struck">{entry.machineClaim}</div>
+                  <div className="corpus-correction">“{entry.correction}”</div>
+                </div>
+              ))}
+            </div>
+          ))
+        )}
       </div>
     </div>
   )
@@ -154,7 +224,7 @@ function ImportControl({
   onImported: (chapters: Chapter[]) => void
 }) {
   const fileRef = useRef<HTMLInputElement>(null)
-  const [note, setNote] = useState<string | null>(null)
+  const [note, setNote] = useState<{ text: string; declined: boolean } | null>(null)
 
   function handleFile(file: File) {
     const reader = new FileReader()
@@ -163,10 +233,17 @@ function ImportControl({
         const rows = parseLetterboxdCsv(String(reader.result))
         onImported(computeChapters(rows))
       } catch (err) {
-        setNote(err instanceof Error ? err.message : 'We couldn’t read that file.')
+        if (err instanceof DeclinedToInterpret) {
+          setNote({ text: err.message, declined: true })
+        } else {
+          setNote({
+            text: err instanceof Error ? err.message : 'We couldn’t read that file.',
+            declined: false,
+          })
+        }
       }
     }
-    reader.onerror = () => setNote('We couldn’t read that file.')
+    reader.onerror = () => setNote({ text: 'We couldn’t read that file.', declined: false })
     reader.readAsText(file)
   }
 
@@ -178,7 +255,14 @@ function ImportControl({
       <div className="import-note">
         diary.csv or watched.csv · read entirely in this window · nothing leaves your browser
       </div>
-      {note && <div className="import-message">{note}</div>}
+      {note && (
+        <div className="import-message">
+          {note.declined && (
+            <div className="import-declined-label">the system declined to interpret</div>
+          )}
+          {note.text}
+        </div>
+      )}
       <input
         ref={fileRef}
         type="file"

@@ -13,6 +13,10 @@ export type EvidenceBlock =
   | { kind: 'films'; label: string; films: Film[] }
   | { kind: 'quote'; label: string; source: string; text: string }
   | { kind: 'pattern'; label: string; text: string }
+  // The literal arithmetic behind a claim — evidence as computation, not just prose.
+  | { kind: 'computation'; label: string; formula: string; result: string }
+  // One honest figure — e.g. found vs. fed — rendered as bars, never decoration.
+  | { kind: 'ratio'; label: string; bars: { label: string; pct: number }[] }
 
 export type ForkChoice = {
   id: string
@@ -76,6 +80,12 @@ const allChapters: Chapter[] = [
           { date: 'Dec 28, 2022', title: 'A Ghost Story', year: 2017, note: '“the pie scene”' },
           { date: 'Dec 31, 2022', title: 'Aftersun', year: 2022, note: 'rewatch' },
         ],
+      },
+      {
+        kind: 'computation',
+        label: 'The math',
+        formula: '5 films / 17 weeks (before) → 8 films / 6 weeks (after)',
+        result: '≈4.5× the rate — same person, different rhythm',
       },
       {
         kind: 'pattern',
@@ -305,6 +315,14 @@ const allChapters: Chapter[] = [
         kind: 'pattern',
         label: 'After the winter',
         text: 'The films she watched afterward were years old — 2016, 2010, 1984, 1953. No feed was promoting Tokyo Story in the spring of 2023. Those films were found in lists, essays, interviews, other people’s memories.',
+      },
+      {
+        kind: 'ratio',
+        label: 'One honest figure — how many films arrived near their release date',
+        bars: [
+          { label: 'the year before the winter', pct: 90 },
+          { label: 'the six weeks after', pct: 13 },
+        ],
       },
       {
         kind: 'pattern',

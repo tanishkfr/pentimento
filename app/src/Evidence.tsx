@@ -35,6 +35,30 @@ export function Evidence({ blocks, animate = true }: { blocks: EvidenceBlock[]; 
             </div>
           )}
           {block.kind === 'pattern' && <div className="pattern-text">{block.text}</div>}
+          {block.kind === 'computation' && (
+            <div className="computation">
+              <div className="computation-formula">{block.formula}</div>
+              <div className="computation-result">{block.result}</div>
+            </div>
+          )}
+          {block.kind === 'ratio' && (
+            <div className="ratio-chart">
+              {block.bars.map((bar) => (
+                <div className="ratio-row" key={bar.label}>
+                  <div className="ratio-row-label">{bar.label}</div>
+                  <div className="ratio-track">
+                    <motion.div
+                      className="ratio-fill"
+                      initial={animate ? { width: 0 } : { width: `${bar.pct}%` }}
+                      animate={{ width: `${bar.pct}%` }}
+                      transition={{ duration: 1, ease: [0.2, 0.6, 0.2, 1] }}
+                    />
+                  </div>
+                  <div className="ratio-pct">{bar.pct}%</div>
+                </div>
+              ))}
+            </div>
+          )}
         </motion.div>
       ))}
     </div>

@@ -5,6 +5,11 @@
 
 import type { Chapter, EvidenceBlock, Film } from './data'
 
+// Thrown only for the two designed, philosophical refusals — not below
+// evidence thresholds is a stated feature (VISION.md: "silence is a
+// designed behavior"), distinct from an ordinary file-format error.
+export class DeclinedToInterpret extends Error {}
+
 export type ParsedRow = {
   title: string
   year: number | null
@@ -57,7 +62,10 @@ function parseCsv(text: string): string[][] {
   return rows
 }
 
-export function parseLetterboxdCsv(text: string): ParsedRow[] {
+export function parseLetterboxdCsv(rawText: string): ParsedRow[] {
+  // Windows/Excel-touched exports commonly carry a UTF-8 BOM, which would
+  // otherwise poison the first header cell and silently break column detection.
+  const text = rawText.charCodeAt(0) === 0xfeff ? rawText.slice(1) : rawText
   const rows = parseCsv(text)
   if (rows.length < 2) throw new Error('We couldn’t find any rows in that file.')
 
@@ -136,6 +144,8 @@ function burstChapter(rows: ParsedRow[]): Chapter | null {
   const end = windowRows[windowRows.length - 1].date
   const weeks = Math.max(1, Math.round((end.getTime() - start.getTime()) / (7 * DAY)))
   const perMonth = ((rows.length / spanDays) * 30).toFixed(1)
+  const baselineForWindow = Math.max(0.1, expected)
+  const multiplier = (best.count / baselineForWindow).toFixed(1)
 
   const evidence: EvidenceBlock[] = [
     {
@@ -149,9 +159,10 @@ function burstChapter(rows: ParsedRow[]): Chapter | null {
       films: toFilms(windowRows, 12),
     },
     {
-      kind: 'pattern',
-      label: 'The pattern',
-      text: `At your usual pace, these weeks would hold about ${Math.max(1, Math.round(expected))} films. They hold ${best.count}.`,
+      kind: 'computation',
+      label: 'The math',
+      formula: `${perMonth} films/month baseline → ${best.count} films / ${weeks} week${weeks === 1 ? '' : 's'}`,
+      result: `≈${multiplier}× the expected rate for this window`,
     },
   ]
 
@@ -371,6 +382,14 @@ function foundFedChapter(rows: ParsedRow[]): Chapter | null {
         films: toFilms(lateOld, 5, (r) => `${r.date.getFullYear() - (r.year as number)} years old when you watched it`),
       },
       {
+        kind: 'ratio',
+        label: 'One honest figure — how many films arrived near their release date',
+        bars: [
+          { label: 'first half of your archive', pct: Math.round(a * 100) },
+          { label: 'second half', pct: Math.round(b * 100) },
+        ],
+      },
+      {
         kind: 'pattern',
         label: 'What the archive cannot show',
         text: 'Every “found” film was still surfaced by something — a list, an essay, a friend who insisted. The archive records the what and the when. It cannot record the who-chose.',
@@ -454,13 +473,13 @@ function steadyChapter(rows: ParsedRow[]): Chapter {
 
 export function computeChapters(rows: ParsedRow[]): Chapter[] {
   if (rows.length < 20) {
-    throw new Error(
+    throw new DeclinedToInterpret(
       'Your archive is still short — fewer than twenty films. Every archive starts this way. Come back when it has grown.',
     )
   }
   const spanDays = (rows[rows.length - 1].date.getTime() - rows[0].date.getTime()) / DAY
   if (spanDays < 180) {
-    throw new Error(
+    throw new DeclinedToInterpret(
       'Your archive covers less than six months — too little time for drift to be visible yet. It will be.',
     )
   }

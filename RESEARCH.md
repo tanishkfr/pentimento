@@ -465,6 +465,21 @@ Status: implemented.
 
 ---
 
+## E7 — Deepening the proof: signature moment, computation, corpus infrastructure (decision, Jul 2026)
+
+External review scored the project's idea a 10 and its artifact a 6: the thesis was legible but not *felt*, evidence leaned on prose more than literal computation, and the corrections corpus existed only as a plan. Three implementation moves, one explicit refusal:
+
+- **The strike became the signature moment.** Striking a reading no longer just draws a line through text. The claim visibly drains — scale settles, a red line draws itself across it — while the reader's correction (or an honest blank, when none is given) rises into the position and size the claim used to hold, in the human voice. The hierarchy inversion is the right of reply, made physical, not just legible.
+- **Evidence gained two new primitives.** A `computation` block states the literal arithmetic behind a claim (e.g. "5 films / 17 weeks → 8 films / 6 weeks — ≈4.5× the rate"); a `ratio` block renders one honest figure as bars — used for the found/fed confound in both Maya's authored chapter and the importer's real computed percentages. Evidence over assertion is now numeric where the archive makes numbers possible.
+- **Import hardened.** BOM stripping (a real Windows/Excel export failure mode) and a distinct `DeclinedToInterpret` error class, so the two designed refusals (archive too short, span too short) render with a visible "the system declined to interpret" label — a stated refusal, not a silent one, matching VISION's promise that silence is a designed behavior.
+- **The corrections corpus got its gallery, honestly empty.** `corpus.ts` and a corpus view are built and reachable from the About overlay ("→ the corrections corpus (n=0)"), grouped-by-failure-mode rendering ready to go — but seeded with zero entries. The file is explicitly documented as never to be populated with authored or synthetic examples: fabricating this data would contradict the project's own thesis. It turns on the moment E3 produces real sessions.
+
+What was explicitly *not* done: no participant sessions were run, and none were simulated. Recruiting and interviewing real people is outside what an implementation pass can produce, and inventing "real" corrections would be the exact failure mode this project exists to argue against. The study (E3, STUDY.md) remains the gap between "very good argument" and "research contribution."
+
+Status: implemented (product). Unrun (study). See CASESTUDY.md for the current honest state of proof.
+
+---
+
 ## E4 — The reframe: from Taste Trails to Second Draft (decision, Jul 2026)
 
 A zero-attachment review found that the project's most original interaction — the strike, with its preserved scar and marginal correction — was not about taste at all. It was about the right of a person to contest a machine's narrative of their life. The taste framing was the costume; the right of reply was the thesis.
