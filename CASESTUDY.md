@@ -8,6 +8,29 @@ Status: working draft. This document and the product must tell the same story; w
 
 ---
 
+## Reviewer identity
+
+Pentimento is not a movie diary, recommendation tool, or taste profile. It is a working grammar for contesting machine autobiography.
+
+**Research question:** What should software owe a person when it narrates their life from an archive?
+
+**Core thesis:** Software that narrates a person owes that person a right of reply.
+
+**Contribution:** A correction model where a machine claim remains evidence-bound, can be struck by its subject, and returns in the second draft as a visible scar rather than a hidden edit.
+
+**Interaction grammar:** Receive interpretation -> inspect evidence -> accept, reframe, or strike -> revision preserves disagreement.
+
+**Cognitive verb:** Contest.
+
+**Emotional arc:** Recognition -> discomfort -> resistance -> authorship.
+
+**Reviewer takeaway:** This is the project that proves Tanishk can identify an ethical asymmetry and make the interface structurally submit to the person it describes.
+
+Two weeks later, the reviewer should remember:
+
+> Pentimento was the one where the machine's sentence stayed visible after I struck it, and my correction became the draft.
+
+---
 ## The observation
 
 Algorithmic autobiography is already mass-produced. Every December, hundreds of millions of people are narrated by machines — year-in-reviews, auto-curated memory reels, "your top genre was..." These stories are asserted, not argued: they cite no evidence, admit no uncertainty, and accept no correction. There is no way to tell Spotify Wrapped that March was the month your father died, not your "horror phase."
