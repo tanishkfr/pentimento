@@ -1,56 +1,112 @@
 # Pentimento
 
-> **Context:** Self-directed research-through-design
-> **Year:** 2026
-> **Duration:** Ongoing in 2026
-> **Role:** Independent designer, researcher, writer, and engineer
-> **Status:** Working research artifact
-> **Tools:** React, TypeScript, Vite, CSS, browser-local state
-> **AI disclosure:** AI-assisted ideation, critique, and code iteration; final concept selection, design decisions, editing, and authorship by Tanishk Salagame.
-> **Live:** https://pentimento-lovat.vercel.app/
+> **Context:** Self-directed research-through-design  
+> **Year:** 2026  
+> **Role:** Independent designer, researcher, writer, and engineer  
+> **Status:** Working research artifact; participant study not yet run  
+> **Tools:** React, TypeScript, Vite, CSS, browser-local state  
+> **AI disclosure:** AI-assisted ideation, critique, and code iteration; final concept selection, design decisions, editing, and authorship by Tanishk Salagame.  
+> **Live:** https://pentimento-lovat.vercel.app/  
 > **Source:** https://github.com/tanishkfr/pentimento
 
-## The contested sentence
+## The question
 
-> I remember the kitchen as quiet.
+Year-in-review products and generated memory systems turn personal archives into stories. They usually cite little evidence, communicate little uncertainty, and offer no meaningful way for the person described to correct the account.
 
-Pentimento begins with a machine-written memoir that has already converted an archive into certainty. The subject does not prompt the machine for another version. They contest this sentence directly.
+Pentimento asks:
 
-The project asks: **what would it mean for the person described by an AI-generated life story to hold final authority over its language?**
+> **When software narrates a person’s life from their archive, what does that person need in order to contest, correct, and co-own the story?**
 
-## Who has touched this sentence?
+The project’s position is simple: software that narrates a person owes that person evidence, uncertainty, and a right of reply.
 
-The machine begins with interpretive ink. Its claims are fluent, causal, and provisional.
+## The artifact
 
-The subject edits in sovereign ink. Their correction does not become another suggestion in a collaboration queue; it becomes the text.
+Pentimento opens inside a first draft built from dates, titles, returns, and absences. Each consequential sentence can be opened to inspect its evidence. The reader may:
 
-The withdrawn machine reading remains beneath the correction as a visible layer. It cannot quietly return, and it is not erased from history.
+1. **Let it stand** — accept the proposed interpretation.
+2. **Read it differently** — choose another defensible account of the same evidence.
+3. **Strike it** — withdraw the machine’s sentence and optionally replace it in their own words.
 
-That three-part lineage—machine assertion, human correction, preserved withdrawal—is Pentimento’s organizing interaction.
+Every choice remains revisable until the second draft is settled.
 
-## The authorship instrument
+## The signature interaction
 
-Every consequential sentence can be opened as a site of dispute. Editing changes both the prose and its physical authority:
+The strike is the load-bearing interaction.
 
-- machine interpretation yields rather than merely receiving a comment;
-- human correction is visually and procedurally final;
-- the superseded reading remains inspectable;
-- the document accumulates a history of contested interpretation.
+When a reader strikes a claim, a red line draws across the machine’s language. The claim recedes into an underpainting while the reader’s correction rises in the human typographic voice. The evidence remains. The interpretation loses authority.
 
-The interface therefore does not ask whether AI can help write a memoir. It asks who is allowed to decide what a life means after the machine has written first.
+The final composition preserves three layers:
 
-## Why visible withdrawal matters
+- the archive as evidence;
+- the system’s withdrawn interpretation;
+- the subject’s correction as sovereign ink.
 
-A clean replacement would hide the conflict. A conventional track-changes view would turn the subject into one collaborator among peers. Pentimento keeps the earlier claim visible but demotes its authority. The resulting page behaves less like an editor and more like a palimpsest: interpretation survives as residue while authorship changes hands.
+The point is not deletion. Deletion would hide that the machine made the claim. The point is visible withdrawal: the system yields without rewriting history.
 
-## Limits
+## Why a palimpsest, not track changes
 
-The current memoir and its archive are authored research material, not a longitudinal deployment with memoir subjects. The artifact demonstrates a model of contestable machine autobiography; it does not claim that its authority grammar has been validated across cultures, families, or high-stakes memory disputes.
+A conventional comment places the subject beside the document. Track changes makes the subject one collaborator among peers. Pentimento instead changes the hierarchy of the page: the subject’s words become the leading text, and the machine’s earlier certainty becomes residue.
 
-No participant-study claim is implied. The work’s evidence is the interaction itself and the specific authorship relations it makes possible.
+The name comes from painting. A pentimento is an earlier mark that remains visible through the finished work—a change of mind kept in the artifact.
 
-## The contribution
+## Two archives
 
-Pentimento contributes a grammar for **sovereign correction**: a person can overrule a machine’s interpretation without erasing the fact that the interpretation occurred.
+The probe runs in two modes.
 
-The image to remember is not a chat or a generated page. It is one sentence whose old certainty is still visible underneath the person who reclaimed it.
+**Maya’s edition** is explicitly labeled as authored fictional research material. It demonstrates the interaction grammar without pretending to be participant evidence.
+
+**Your archive** accepts a Letterboxd CSV and computes possible chapters locally in the browser. The raw archive is never uploaded. Below minimum evidence thresholds, the system declines to interpret rather than manufacture a story.
+
+The finished session can be downloaded as a structured record containing choices, strikes, and correction history, but not the raw archive.
+
+## Design system as authorship system
+
+Three typographic voices clarify who is speaking:
+
+- Space Grotesk: system observations and interpretations;
+- Fraunces italic: human titles and corrections;
+- IBM Plex Mono: evidence, provenance, and the revision record.
+
+Red is reserved for moments where human agency acts on the document: strike controls, withdrawal marks, focus, and sovereign ink. Before interaction, claims use a neutral underline.
+
+Motion has one job: show a transfer of authority. Evidence unfolds; machine language yields; human language settles. Reduced-motion preferences preserve the same hierarchy without the choreography.
+
+## Research position
+
+Contestable-AI research largely addresses consequential automated decisions. Work on algorithmic autobiography and algorithmic identity examines how platforms construct datafied selves and how people reflect on those constructions. Pentimento sits between those areas: it proposes a concrete interaction grammar for contesting a machine-authored narrative of the self while preserving the dispute in the resulting artifact.
+
+This is a narrower claim than inventing algorithmic autobiography or contestability. The contribution is the visible authorship relation made operable on one page.
+
+## What is evidence—and what is not
+
+Implemented evidence:
+
+- a working first-draft → reply → second-draft loop;
+- inspectable evidence for every claim;
+- accept, reframe, strike, revise, and undo paths;
+- client-side archive import with explicit refusal thresholds;
+- preserved correction lineage, printable scars, and session-record export;
+- an honestly empty corrections corpus ready for consented study data.
+
+Not yet evidenced:
+
+- whether people recognize themselves in computed chapters;
+- whether striking increases or decreases trust in accepted readings;
+- whether the grammar works across cultures, relationships, or high-stakes memories;
+- whether a correction remains meaningful after the novelty of the interaction fades.
+
+No participant finding is claimed.
+
+## Next study
+
+The written protocol calls for 8–12 Letterboxd users working with their own archives. Sessions will examine recognition, strike behavior, trust after contestation, certainty calibration, and one-week recall. Participants can review and redact the session record before sharing it.
+
+The most important output is not an agreement rate. It is a corrections corpus: machine claims paired with what the people described said instead, coded by how the archive’s interpretation failed.
+
+## Contribution
+
+Pentimento contributes a grammar for **sovereign correction**:
+
+> A person can overrule a machine’s interpretation without erasing the fact that the interpretation occurred.
+
+The image to remember is one sentence whose old certainty remains visible underneath the person who reclaimed it.
