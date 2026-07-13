@@ -1,180 +1,136 @@
-# DESIGN.md
+# Pentimento Experience and Visual System
 
-## Pentimento Experience & Visual System
+**Version:** 0.4  
+**Status:** Built design contract
 
-**Version:** 0.3
+Pentimento stages two authors on one page: a system that proposes meaning and a person with final authority over the account.
 
-**Status:** Living Document
+## Experience goals
 
-This document defines how Pentimento should feel and how it looks — as built.
+The experience should feel reflective, inspectable, and fair. It should never feel like a movie database, an analytics dashboard, a personality test, or an AI performance.
 
-Every decision here serves the thesis: two authors arguing on one page, fairly, with the argument preserved.
+Every screen should strengthen at least one of four qualities:
 
----
+- discovery: “I had not noticed that”;
+- recognition: “that reads true”;
+- standing: “that is wrong, and the page listened”;
+- explainability: “I can see why this was proposed.”
 
-# Design Goal
+## The underpainting
 
-The interface stages an honest argument between a system that reads evidence and a person who lived it.
-
-Every screen should move the reader from observation toward judgment — theirs, not ours.
-
----
-
-# Experience Pillars
-
-## 1. Discovery
-
-The system shows what was always there. The reader should think "I never noticed that" — or "that's not what that was," which is discovery of another kind.
-
-## 2. Reflection
-
-No urgency, no productivity, no optimization. Pauses are intentional. The dark is quiet on purpose.
-
-## 3. Collaboration
-
-The system proposes; the reader disposes. The interface constantly communicates "your call," never "here's the answer."
-
-## 4. Explainability
-
-Every insight is inspectable, always, including after it has been struck. Evidence is part of the experience, not a footnote.
-
----
-
-# The Underpainting
-
-The visual identity. Named for what the project is named for: the earlier layer left visible.
+The visual identity comes from the project’s name. In painting, a pentimento is an earlier mark left visible through the finished work. The interface makes revision physical: a withdrawn machine claim remains beneath the correction without retaining authority.
 
 ## Canvas
 
-Deep umber dark (`#16110c`, lifted by a faint radial glow at the top). Not tech-dark, not terminal-dark — a painter's ground. Reflection happens in low light.
+The canvas is deep umber (`#15100c`) with a faint warm lift. It should read as a painter’s ground rather than generic technology-dark.
 
-## The Three Voices
+## Three voices
 
-The thesis, enforced in type. Every piece of text belongs to exactly one voice:
+Every text element belongs to an authorial role.
 
-**The machine speaks in a grotesque** — Space Grotesk. Claims, observations, memoir prose. Precise, systematic, never italic.
+**System — Space Grotesk**  
+Observations, proposed interpretations, claims, and generated memoir prose.
 
-**The human corrects in an italic serif** — Fraunces italic. Review fragments, chapter names, corrections, and every input field: as the reader types, their words are already in the human voice.
+**Human — Fraunces italic**  
+Corrections, human-selected chapter titles, review fragments, and text inputs.
 
-**The record keeps evidence in mono** — IBM Plex Mono. Dates, labels, apparatus, retractions. The clerk of the court.
+**Record — IBM Plex Mono**  
+Dates, provenance, evidence labels, folios, state labels, and revision lineage.
 
-If a piece of text cannot be assigned to a voice, its author is unclear — rewrite it.
+If authorship is unclear, the text or typography must be revised.
 
-## The Red-Ink Rule
+## Red-ink rule
 
-Red (`#e8502e`) belongs exclusively to acts of disagreement and human control: strikes, marginalia, corrections, chapter names, buttons.
+Red (`#ed5331`) appears when human agency acts on the document:
 
-The machine never wears red. Nothing decorative is red. When red appears, a person acted.
+- strike controls and withdrawal marks;
+- sovereign-ink labels and correction borders;
+- keyboard focus and active claim affordances.
 
-## No Posters
+Unopened machine claims use a neutral underline. Red is not used for generic status, decoration, or machine-authored emphasis.
 
-Ever. Identity is carried by dates, titles, and the person's own six-word reviews. Artwork would make the films the protagonists; the reader is the protagonist.
+## Hierarchy
 
----
+Meaning precedes metadata:
 
-# Information Hierarchy
+**Claim → evidence → pattern → films → metadata**
 
-Meaning over metadata, always:
+Film artwork is excluded. Posters would make media the protagonist; the person and the dispute are the protagonists.
 
-Claim → Evidence → Pattern → Films → Metadata
+## Typography and legibility
 
-The interface must never feel like a movie database. Films appear only as rows of evidence, in the record's voice.
+- Body text should remain at or above 14px; reflective prose at or above 17px.
+- Essential mono labels should remain at or above 10px.
+- `--faint` and all other text colors must meet WCAG AA against the canvas.
+- Date ranges should wrap as deliberate units, especially at 320px.
+- Uppercase and tracking communicate the record voice but should not replace readable hierarchy.
 
----
+## Spacing and density
 
-# Visual Density
+One claim leads each section. Evidence may be dense, but the page should preserve enough vertical separation to distinguish observation, interpretation, proposition, evidence, and reply.
 
-One claim per screen. Evidence unfolds in layers, never all at once.
+Resolving a claim closes its evidence drawer. A reviewer should not be forced through repeated clerical material after making a decision.
 
-The dark canvas holds silence the way the old paper held whitespace. Avoid dashboard density; a single honest sentence outranks twenty statistics.
+## Motion
 
----
+Motion communicates a change in authority.
 
-# Motion
+**Unfolding** — evidence blocks arrive in sequence.  
+**Withdrawal** — the strike draws across the machine claim.  
+**Yielding** — the machine layer recedes.  
+**Settlement** — the human correction rises into primary hierarchy.  
+**Revision** — the document moves to the new draft only after its layout has settled.
 
-Motion is entrance and yield. Nothing decorates.
+Motion must honor both `prefers-reduced-motion` and Framer Motion’s user setting. Every state remains understandable without animation.
 
-**Unfolding** — evidence blocks stagger in one at a time: "here is why, layer by layer."
+## Interaction states
 
-**Yielding** — each stage fades up and out before the next enters. The conversation takes turns; nothing interrupts.
+### Hover
 
-**Settling** — written prose fades in slowly. The memoir absorbs the decision.
+Hover clarifies affordance but never carries unique meaning.
 
-**The scar stays** — struck text never animates away. Permanence is the message.
+### Focus
 
-Red moves only when the human acts. Reduced-motion preferences are honored (`prefers-reduced-motion`, MotionConfig).
+All interactive elements receive a visible red outline with sufficient offset. Focus order follows reading order.
 
----
+### Pressed
 
-# States
+Buttons should visibly respond through color or opacity without introducing bounce or decorative scale.
 
-## Empty / insufficient
+### Disabled
 
-Hopeful, never broken: "Your archive is still short... Every archive starts this way. Come back when it has grown." Declining to interpret is a designed behavior.
+The second-draft control remains disabled until every claim is answered. Nearby copy explains what remains.
 
-## Loading
+## Import feedback
 
-Barely exists (everything is local). Never "Analyzing..." — the system reads; it does not compute at people.
+File errors and evidence refusals use different language.
 
-## Success
+- Invalid format: direct, actionable, dismissible.
+- Insufficient evidence: reflective, explicit, and nonjudgmental.
+- Success: immediate transition into the locally computed edition.
 
-Success is recognition or an honored refusal — never "Task complete."
+## About dialog
 
-## Error
+The About surface is a true modal: focus is trapped, Escape closes it, background scrolling stops, and focus returns to the invoking control. It explains the thesis, the name, Maya’s fictional provenance, privacy, and the current corrections-corpus size.
 
-Explain what happened, offer the way back, never blame. "We couldn't read that file. Try diary.csv from your export folder."
+## Accessibility
 
----
+- WCAG AA text contrast, including the record layer.
+- No meaningful color-only distinctions.
+- Semantic headings for claims and resolved chapter titles.
+- `aria-expanded` and `aria-controls` for evidence drawers.
+- Named evidence regions.
+- Keyboard access to every decision and modal control.
+- Reduced motion end to end.
+- Touch targets at least 24px, with primary controls larger.
 
-# Language Surface
+## Print
 
-The system sounds curious, never certain: "It looks like..." "This may indicate..." "The archive can't say."
+Print changes the canvas to paper, hides navigation and evidence apparatus, and always includes human corrections plus withdrawn machine readings. The scar survives even when the underpainting was concealed on screen.
 
-The reader's words are never edited, paraphrased, or improved. See LANGUAGE.md for the full vocabulary.
+## Final test
 
----
-
-# Accessibility
-
-Commitments, not aspirations:
-
-* All text — including the smallest mono labels — holds ≥4.5:1 contrast on the canvas (`--muted` and `--faint` are tuned for this; do not darken them for taste).
-* Nothing meaningful is conveyed by color alone: strikes are line-through plus color; corrections are bordered plus labeled.
-* Full keyboard path: every clickable has focus-visible (red outline), memoir paragraphs are keyboard-actionable.
-* Reduced motion honored end to end.
-* Every insight remains understandable with animation off.
-
----
-
-# The Printed Draft
-
-The memoir is designed to leave the screen. Print flips to paper — light ground, dark ink, red-pencil scars — hides all apparatus, and keeps every strike and marginal note. The scar survives the medium.
-
----
-
-# What Pentimento Should Feel Like
-
-Like finding marginalia in your own biography — some of it yours.
-
-Like being read closely, and having the standing to say "no."
-
-Like a document two authors fought over, kindly, and both signed.
-
----
-
-# What It Should Never Feel Like
-
-A streaming service. A dashboard. A statistics tool. A personality test. An AI assistant performing insight.
-
-A courtroom. The argument is honest, never adversarial.
-
-If readers describe it as any of these, redesign.
-
----
-
-# Final Principle
-
-Every design decision answers one question:
+Every design decision must answer:
 
 > Does this make the argument between the system and the reader fairer, clearer, or more honest?
 

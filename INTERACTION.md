@@ -1,231 +1,128 @@
-# INTERACTION.md
+# Pentimento Interaction Model
 
-## Pentimento Interaction Model
+**Version:** 0.4  
+**Status:** Built interaction contract
 
-**Version:** 0.3
+Pentimento stages an honest argument between a system that reads evidence and the person who lived it.
 
-**Status:** Living Document
+> When software narrates a person’s life from their archive, what does the person need in order to contest, correct, and co-own that story?
 
-This document defines how people interact with Pentimento.
+## The grammar
 
-It does not describe screens.
+**Propose → show evidence → let stand, reframe, or strike → revise if needed → settle a second draft → preserve lineage.**
 
-It describes behavior — the behavior that is actually built.
+This is the only primary interaction loop. Supporting controls must clarify or preserve it.
 
-Every interaction should reinforce the central research question.
+## 1. Propose
 
-> When software narrates a person's life from their archive, what does the person need in order to contest, correct, and co-own that story?
+The system presents an observation, a provisional interpretation, and one consequential claim. A claim is styled as an unopened proposition, not as established fact.
 
-(The originating domain question — helping people recognize change in their cultural identity through the media they consume — lives inside this one. See VISION.md.)
+Maya’s edition is labeled as authored fictional research material. Imported editions are labeled as locally computed from the reader’s archive.
 
----
+## 2. Show evidence
 
-# The Purpose of Interaction
+Opening a claim reveals the dates, titles, quotations, patterns, ratios, or arithmetic behind it. Evidence unfolds before a decision is requested.
 
-The interface exists to stage an honest argument between two authors:
+The reader can close the drawer without responding. In a settled draft, every chapter still provides an **inspect the evidence** control.
 
-a system that reads evidence, and a person who lived it.
+## 3. Reply
 
-Not efficiency. Not engagement. An argument, conducted fairly, preserved on the page.
+### Let stand
 
----
+The reader permits the proposed interpretation to enter the memoir. This is a reply, not passive consent.
 
-# The Grammar
+### Read differently
 
-Pentimento has one atomic grammar. Everything in the product is a sentence in it.
+The reader chooses between two interpretations supported by the same evidence. The selected interpretation changes the prose and chapter title.
 
-**Propose**
+### Strike
 
-The system makes one claim, from evidence.
+The reader withdraws the machine’s sentence. A correction is optional; refusal without replacement remains a legitimate answer.
 
-↓
+The strike visibly transfers authority:
 
-**Show evidence**
+- a withdrawal line crosses the machine claim;
+- the claim recedes into the underpainting;
+- the reader’s correction rises in the human voice;
+- evidence remains available.
 
-The evidence unfolds before any decision is asked for. Dates, titles, the person's own words.
+## 4. Revise or change the reply
 
-↓
+Before settlement, every resolved claim can be reopened with **change this reply**. Human corrections can accumulate a visible revision lineage. Empty revisions are not accepted; blank refusal is expressed through the original strike path instead.
 
-**Accept, Reframe, or Strike**
+No consequential decision becomes irreversible because of one click.
 
-The reader agrees, chooses a different reading of the same evidence, or refuses the reading entirely.
+## 5. Settle the second draft
 
-↓
+The second draft becomes available only after every claim has received a reply. Settlement moves the reader to the top of the revised document.
 
-**The memoir writes**
+The second draft:
 
-The decision becomes prose. Every choice changes the text — no fork is decorative.
+- lets accepted and reframed prose stand;
+- lets human corrections lead;
+- keeps withdrawn machine readings available as underpainting;
+- preserves evidence inspection;
+- allows a return to the first draft without losing replies.
 
-↓
+## 6. Preserve the record
 
-**The second draft**
+### Underpainting
 
-Where readings were struck, the system revises: corrections lead, and the struck claim stays visible inside the revision as a scar.
+The screen may conceal or reveal withdrawn layers to compare the clean reading with its lineage. Concealment never deletes them.
 
----
+### Printing
 
-# The Three Verbs
+Printing always includes the withdrawn machine layer, even when the screen’s underpainting is concealed. Controls and evidence apparatus are omitted.
 
-## Accept
+### Session record
 
-The reader recognizes the reading. It enters the memoir in the system's voice, hedged to the level of certainty the evidence has earned.
+The reader can download a structured JSON record containing chapter identifiers, claims, choices, prose, strikes, and correction versions. It never includes the raw Letterboxd archive.
 
-## Reframe
+### Corrections corpus
 
-Two honest readings of the same evidence are offered whenever two exist. Choosing between them is interpretation, not agreement — the reader decides what the evidence means, never whether it exists.
+The About view exposes the corpus and its current sample size. It ships empty and may contain only real corrections collected with consent.
 
-## Strike
+## Import states
 
-The load-bearing verb. The reader refuses the reading. The claim is struck through — never deleted — a retraction is recorded, and the reader may add a correction in their own words.
+### Invalid file
 
-A strike is not an error state. It is the interaction the entire grammar exists to make possible.
+A malformed or non-Letterboxd CSV is described as a file error. The reader can dismiss the message or choose another file.
 
----
+### Insufficient archive
 
-# The Correction
+Below the evidence thresholds, the system explicitly declines to interpret. This is a designed refusal, not a file error.
 
-The reader's own words, offered in place of a struck reading.
+### Valid archive
 
-Rules:
+One to four claims may be produced. All claim counts and folios must derive from the computed result.
 
-The system never edits, paraphrases, or improves a correction.
+## Human and system roles
 
-Corrections outrank readings — visibly, in the second draft.
+The archive supplies evidence. The system interprets. The person decides what the account may say.
 
-A blank strike (refusal without replacement) is a legitimate answer, and the memoir says so honestly.
+The system never edits or paraphrases a correction. The person never has to begin from a blank page. The machine never gets the last word.
 
----
+## Interaction principles
 
-# The Second Draft
+1. **Show before asking.** Evidence precedes judgment.
+2. **Recognition over recall.** Proposed readings precede optional free writing.
+3. **Evidence over assertion.** Every claim answers “why?”
+4. **Disagreement is first-class.** A strike is a successful interaction.
+5. **Every choice changes the text.** Decorative forks are removed.
+6. **Every choice remains revisable.** Authority includes changing one’s mind.
+7. **The record survives the medium.** Screen, JSON, and print preserve authorship lineage.
 
-Asking for the second draft is the climactic interaction.
+## Motion principles
 
-The revision must:
+Motion is entrance, yield, and settlement—never decoration.
 
-* keep the first draft's struck claims visible as scars
-* let corrections lead
-* never quietly restore a withdrawn reading
+- Evidence unfolds to construct an argument.
+- The machine claim yields when struck.
+- Human language rises and settles.
+- The withdrawn layer remains.
 
-The reader can return to the first draft at any time. The lineage is never hidden.
+Reduced-motion preferences remove travel and delay without removing hierarchy or meaning.
 
----
+## Success
 
-# Supporting Interactions
-
-## Naming
-
-Chapters are named by the reader — suggestions offered, free text honored. Names are human words and render in the human voice.
-
-## Certainty calibration
-
-Where a pattern may have hardened into taste, the reader sets how confident the memoir may be. The system never graduates to certainty on its own.
-
-## Inspection
-
-Every paragraph in the finished memoir reopens its evidence on click — including struck ones. Evidence outlives the readings built on it.
-
-## The record
-
-The session — every reading, strike, and correction — downloads as a structured file. It is the study's instrument (STUDY.md) and the reader's property.
-
-## Printing
-
-Drafts print, scars included. The memoir is designed to leave the screen.
-
----
-
-# Human + System Roles
-
-The system reads evidence. The person lived it.
-
-The system may suggest. The person decides.
-
-Never reverse these roles.
-
-The person never starts with a blank page; the system never gets the last word.
-
----
-
-# Interaction Principles
-
-## 1. Show Before Asking
-
-Evidence unfolds before any judgment is requested. Never ask people to explain themselves before showing what was observed.
-
-## 2. Recognition Over Recall
-
-Propose readings; don't request essays. People recognize patterns more easily than they generate them. The one exception is the correction — and it is optional.
-
-## 3. Evidence First, Always
-
-Every claim must answer "why?" immediately. Evidence is part of the interaction, never a secondary feature.
-
-## 4. Disagreement Is First-Class
-
-The strike must always be available, always consequential, and never punished. If a reading cannot survive refusal, it should not have been proposed.
-
-## 5. Every Choice Changes the Text
-
-If a fork does not alter the memoir, the agency is fake. Remove it.
-
----
-
-# Motion Principles
-
-Motion is entrance and yield — nothing decorative.
-
-Unfolding — "here is the evidence, one layer at a time."
-
-Yielding — a stage fades up and out before the next enters; the conversation takes turns.
-
-Settling — written prose fades in slowly; the memoir absorbs the decision.
-
-The scar stays — struck text never animates away. Permanence is the message.
-
-Red ink moves only when the human acts.
-
----
-
-# Moments of Uncertainty
-
-Uncertainty is a feature.
-
-"It looks like..." "This may indicate..." "The archive can't say."
-
-The system declines to interpret below evidence thresholds. Silence is a designed behavior, not a failure state.
-
----
-
-# Impossible Interactions
-
-Pentimento refuses:
-
-Scores. Streaks. Personality types. Comparisons. Optimizing a profile.
-
-Deleting a struck reading. Editing a correction. Restoring a withdrawn claim.
-
-The system cannot be gamed because there is nothing to win — only an account to get right.
-
----
-
-# Success
-
-An interaction succeeds when:
-
-The reader recognizes something — "that's exactly what happened."
-
-Or refuses something — "that's not what happened" — and sees the refusal honored.
-
-Both are success. Only indifference is failure.
-
----
-
-# The Litmus Tests
-
-Would this interaction still be meaningful if every movie poster disappeared?
-
-(There are no posters. It must be.)
-
-Would this interaction survive the reader saying "no"?
-
-If the answer is no, redesign the interaction — not the reader.
+The interaction succeeds when the reader recognizes a reading or refuses it and sees that refusal honored. Agreement and disagreement are both valid outcomes. Indifference is the failure state.

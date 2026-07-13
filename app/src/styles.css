@@ -4,7 +4,7 @@
   --paper: #f0e8da;
   --paper-dim: #c8bcaa;
   --muted: #988c7b;
-  --faint: #746959;
+  --faint: #8f8372;
   --line: #342a20;
   --red: #ed5331;
   --red-dark: #9f321f;
@@ -71,6 +71,10 @@ button:disabled {
 
 .edition-wordmark,
 .edition-nav-actions button {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
   font-family: var(--record);
   font-size: 10px;
   letter-spacing: 0.16em;
@@ -112,6 +116,29 @@ button:disabled {
   text-transform: uppercase;
 }
 
+.edition-message p {
+  margin: 0;
+}
+
+.edition-message-actions {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.edition-message-actions button {
+  min-height: 28px;
+  color: var(--muted);
+  font-family: var(--record);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edition-message-actions button:hover {
+  color: var(--paper);
+}
+
 .edition-shell {
   width: min(100%, 920px);
   margin: 0 auto;
@@ -148,17 +175,22 @@ button:disabled {
 
 .draft-edition {
   margin-bottom: 10px;
-  color: var(--red);
+  color: var(--muted);
   font-size: 10px;
 }
 
 .draft-title {
   max-width: 680px;
+  text-wrap: balance;
   font-family: var(--machine);
   font-size: clamp(42px, 7vw, 76px);
   font-weight: 450;
   line-height: 0.98;
   letter-spacing: -0.045em;
+}
+
+.title-range {
+  white-space: nowrap;
 }
 
 .draft-deck {
@@ -169,6 +201,16 @@ button:disabled {
   font-size: clamp(18px, 2.5vw, 23px);
   font-style: italic;
   line-height: 1.45;
+}
+
+.draft-provenance {
+  margin-top: 18px;
+  color: var(--faint);
+  font-family: var(--record);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  text-transform: uppercase;
 }
 
 .draft-folio {
@@ -191,7 +233,7 @@ button:disabled {
   max-width: 560px;
   margin: 36px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.8;
 }
 
@@ -214,7 +256,7 @@ button:disabled {
   justify-content: space-between;
   margin-bottom: 26px;
   color: var(--faint);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .machine-context {
@@ -236,22 +278,28 @@ button:disabled {
   margin-top: 32px;
 }
 
+.claim-heading {
+  margin: 0;
+  font: inherit;
+}
+
 .claim-sentence {
   display: inline;
   max-width: 760px;
   text-align: left;
   color: var(--paper);
-  border-bottom: 2px solid var(--red);
+  border-bottom: 2px solid var(--muted);
   font-family: var(--machine);
   font-size: clamp(25px, 4vw, 39px);
   font-weight: 450;
   line-height: 1.25;
   letter-spacing: -0.025em;
-  transition: color 180ms ease, background 180ms ease;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .claim-sentence:hover {
   color: #fff7eb;
+  border-color: var(--red);
   background: rgba(237, 83, 49, 0.07);
 }
 
@@ -259,7 +307,7 @@ button:disabled {
   margin-top: 11px;
   color: var(--faint);
   font-family: var(--record);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -278,7 +326,7 @@ button:disabled {
 .apparatus-label {
   margin-bottom: 20px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .claim-actions {
@@ -292,10 +340,14 @@ button:disabled {
 .sovereign-action,
 .strike-action,
 .sovereign-link {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
   font-family: var(--record);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .sovereign-action {
@@ -416,6 +468,20 @@ button:disabled {
   margin-top: 32px;
 }
 
+.resolved-title {
+  margin: 0 0 10px;
+  color: var(--paper);
+  font-family: var(--human);
+  font-size: clamp(22px, 3vw, 30px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.change-reply {
+  margin-top: 18px;
+}
+
 .resolved-reading > p:last-child {
   color: var(--paper);
   font-size: 18px;
@@ -453,6 +519,7 @@ button:disabled {
 
 .sovereign-words,
 .sovereign-blank {
+  margin: 0;
   max-width: 700px;
   color: #fff5e8;
   font-family: var(--human);
@@ -480,17 +547,31 @@ button:disabled {
   background: rgba(240, 232, 218, 0.025);
 }
 
+.underpainting.is-concealed {
+  display: none;
+}
+
 .underpainting-label {
   margin-bottom: 7px;
   color: var(--faint);
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .underpainting-claim {
+  position: relative;
+  display: inline-block;
   color: var(--faint);
   font-size: 14px;
-  text-decoration: line-through;
-  text-decoration-color: var(--red);
+}
+
+.withdrawal-stroke {
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  left: -3px;
+  height: 2px;
+  background: var(--red);
+  transform-origin: left center;
 }
 
 .human-lineage {
@@ -518,6 +599,17 @@ button:disabled {
 
 .sovereign-controls {
   margin-top: 22px;
+}
+
+.sovereign-control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: center;
+}
+
+.evidence-toggle {
+  margin-top: 20px;
 }
 
 .human-revision-form {
@@ -553,7 +645,7 @@ button:disabled {
   margin-top: 72px;
   text-align: center;
   color: var(--faint);
-  font-size: 8px;
+  font-size: 9px;
 }
 
 /* Evidence remains clerical: it never uses sovereign red. */
@@ -567,7 +659,7 @@ button:disabled {
   margin-bottom: 11px;
   color: var(--muted);
   font-family: var(--record);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -584,7 +676,7 @@ button:disabled {
 .film-year {
   color: var(--faint);
   font-family: var(--record);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .film-title {
@@ -616,7 +708,7 @@ button:disabled {
   margin-top: 8px;
   color: var(--faint);
   font-family: var(--record);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .pattern-text {
@@ -688,6 +780,7 @@ button:disabled {
   z-index: 101;
   top: 26px;
   right: 30px;
+  min-width: 44px;
 }
 
 .about-inner {
@@ -724,6 +817,57 @@ button:disabled {
   color: var(--muted) !important;
   font-family: var(--record);
   font-size: 10px !important;
+}
+
+.about-corpus-link {
+  margin-top: 8px;
+}
+
+.about-corpus {
+  margin-top: 96px;
+  padding-top: 48px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 70px;
+}
+
+.about-corpus h3 {
+  margin-bottom: 24px;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 450;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.corpus-empty {
+  color: var(--muted) !important;
+  font-family: var(--record);
+  font-size: 11px !important;
+}
+
+.corpus-grid {
+  display: grid;
+  gap: 28px;
+}
+
+.corpus-entry {
+  padding: 24px;
+  border: 1px solid var(--line);
+}
+
+.corpus-entry .sovereign-words {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 :focus-visible {
@@ -779,6 +923,10 @@ button:disabled {
     flex-direction: column;
     gap: 10px;
   }
+
+  .sovereign-control-row {
+    align-items: flex-start;
+  }
 }
 
 @media print {
@@ -800,10 +948,15 @@ button:disabled {
   .edition-nav,
   .draft-instruction,
   .claim-actions,
+  .claim-apparatus,
   .sovereign-controls,
   .draft-footer-actions,
   .claim-invitation {
     display: none !important;
+  }
+
+  .underpainting.is-concealed {
+    display: block !important;
   }
 
   .edition-shell {

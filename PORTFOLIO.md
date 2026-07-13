@@ -52,23 +52,23 @@ If the project does not demonstrate this capability — and this position — it
 
 The goal is not for reviewers to say:
 
-"This UI looks beautiful."
+This UI looks beautiful.
 
 or
 
-"Nice animations."
+Nice animations.
 
 The goal is:
 
-"I've never thought about movie history this way."
+That machine claim was allowed to be wrong—and the page changed authority.
 
 or
 
-"That's an interesting way to think about cultural behavior."
+I have never seen a correction treated as more than feedback.
 
 or
 
-"I wish this existed."
+I wish the systems that narrate me worked this way.
 
 The project should be remembered for its idea.
 
@@ -314,7 +314,7 @@ Not originality.
 
 Every screen should answer:
 
-How does this help users recognize meaningful change in themselves?
+How does this give the person described evidence, uncertainty, or a consequential right of reply?
 
 If the answer is unclear, remove the screen.
 
@@ -356,10 +356,10 @@ Keep working.
 
 Pentimento succeeds when people describe it as:
 
-"A new way of understanding cultural evolution."
+A document where the person outranks the machine’s story about them.
 
 Not:
 
-"A beautifully designed movie app."
+A beautifully designed movie app.
 
-That single sentence should guide every decision throughout the project.
+That distinction should guide every decision throughout the project.

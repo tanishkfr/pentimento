@@ -2,7 +2,7 @@
 
 **Status:** Runnable. Not yet run. No findings exist; none are claimed anywhere until sessions happen.
 
-This protocol operationalizes RESEARCH.md E3. The instrument is the product itself; the session-record download is the data-collection mechanism.
+This protocol operationalizes RESEARCH.md E3. The instrument is the product itself; the implemented session-record download is the data-collection mechanism.
 
 ---
 
@@ -37,7 +37,7 @@ Two contributions, one study:
 # Procedure (60 min/session)
 
 1. **Setup (5 min).** Consent. Participant exports their Letterboxd data (letterboxd.com → Settings → Data → Export) before the session; verify diary.csv present.
-2. **Cold read (5 min).** Open the product. Say nothing. Note whether the opening (struck specimen + two lines) is understood — ask "what do you think this is?" before any explanation.
+2. **Cold read (5 min).** Open Maya’s edition. Say nothing. Note whether the participant understands the authored-probe label, the underlined claim, the evidence drawer, and the three reply paths. Ask “what do you think this lets you do?” before any explanation.
 3. **Own archive, think-aloud (30 min).** Participant imports diary.csv and works through computed chapters aloud. Researcher prompts only: "say what you're thinking," "does that read true?" Never defend a reading.
 4. **Second draft (5 min).** If anything was struck, participant requests the second draft and reads it aloud.
 5. **Exit interview (15 min).** Script below.
@@ -91,5 +91,6 @@ Output: corpus table + frequencies + exemplar quotes (anonymized), reported back
 - [ ] Screener message
 - [ ] Letterboxd export instructions sent 48h ahead
 - [ ] Session build deployed or run locally (`app/`, `npm run dev`)
+- [ ] Session-record download opened and validated before participant arrival
 - [ ] Recording setup; transcript tooling
 - [ ] Follow-up message template (day 7)

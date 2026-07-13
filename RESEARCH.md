@@ -1,6 +1,6 @@
 # RESEARCH.md
 
-## Taste Trails Research Notebook
+## Pentimento Research Notebook
 
 **Status:** Living Document
 
@@ -385,6 +385,11 @@ The nearest literature, located during the July 2026 literature check (E5). Alfr
 
 Cheney-Lippold's "algorithmic identity" [6] describes how systems construct who we are from behavioral data. Recent empirical work studies Spotify Wrapped directly: Annabell & Rasmussen [7] document users' mix of "pleasure, anticipation and powerlessness" at being assigned identities through opaque mechanisms, and name "the limits of the Wrapped self"; adjacent studies examine Wrapped as datafication of the self [8] and as algorithmic self-making and taste performance [9]. The felt need for a right of reply is documented in this literature; the design response is not. Notably, Spotify expanded Wrapped-style recapping to entire listening histories in May 2026 [10] — the medium is growing, and its one-way authority with it.
 
+## Algorithmic autobiography and self-portraits
+
+Bishop and Kant’s *Algorithmic Autobiographies and Fictions* [18] is a close conceptual neighbor. Their participatory workshops use creative writing and drawing to help people encounter, interpret, and take agency around platform-generated algorithmic selves. Dash et al.’s *Algorithmic Self-Portrait* [19] studies memories unilaterally created by conversational systems and documents the resulting agency and privacy questions.
+
+**The narrower gap Pentimento occupies:** these works establish algorithmic autobiography as a field of inquiry and demonstrate reflective or protective responses. Pentimento does not claim to invent that problem space. It contributes a page-level interaction grammar in which a subject can contest a machine-authored personal narrative, visibly replace its authority, and preserve the withdrawn interpretation as part of the resulting artifact.
 ## Personal informatics
 
 Li, Dey & Forlizzi's stage-based model [11] describes collection → reflection pipelines. Pentimento inherits the ambition and rejects the dashboard: reflection here is prose co-authorship, not chart review.
@@ -459,7 +464,7 @@ Decisions:
 
 - **Name: Pentimento** — in painting, an earlier stroke left visible through the finished work; the change of mind, kept. Precisely the artifact this system produces. No product-name collision; the one famous "Pentimento" is Lillian Hellman's memoir, which is resonance, not conflict. "Second draft" survives as the name of the revision mechanic (LANGUAGE.md).
 - **Aesthetic: the underpainting.** Dark umber canvas; three typographic voices enforcing the thesis — the machine speaks in a grotesque (Space Grotesk), the human corrects in an italic serif (Fraunces), the record keeps evidence in mono (IBM Plex Mono); red ink belongs exclusively to acts of disagreement and human control. This splits the project formally from the portfolio's light-editorial register.
-- **Comprehension:** the opening now states plainly what the system does in one sentence, shows the struck specimen, then teaches the loop in three numbered steps, then glosses the name in one line.
+- **Comprehension:** the opening labels Maya’s edition as an authored fictional research probe, states the reply grammar in one compact instruction, and opens the first evidence drawer. The About dialog explains the name, the authority model, privacy, and the corrections corpus.
 
 Status: implemented.
 
@@ -472,7 +477,7 @@ External review scored the project's idea a 10 and its artifact a 6: the thesis 
 - **The strike became the signature moment.** Striking a reading no longer just draws a line through text. The claim visibly drains — scale settles, a red line draws itself across it — while the reader's correction (or an honest blank, when none is given) rises into the position and size the claim used to hold, in the human voice. The hierarchy inversion is the right of reply, made physical, not just legible.
 - **Evidence gained two new primitives.** A `computation` block states the literal arithmetic behind a claim (e.g. "5 films / 17 weeks → 8 films / 6 weeks — ≈4.5× the rate"); a `ratio` block renders one honest figure as bars — used for the found/fed confound in both Maya's authored chapter and the importer's real computed percentages. Evidence over assertion is now numeric where the archive makes numbers possible.
 - **Import hardened.** BOM stripping (a real Windows/Excel export failure mode) and a distinct `DeclinedToInterpret` error class, so the two designed refusals (archive too short, span too short) render with a visible "the system declined to interpret" label — a stated refusal, not a silent one, matching VISION's promise that silence is a designed behavior.
-- **The corrections corpus got its gallery, honestly empty.** `corpus.ts` and a corpus view are built and reachable from the About overlay ("→ the corrections corpus (n=0)"), grouped-by-failure-mode rendering ready to go — but seeded with zero entries. The file is explicitly documented as never to be populated with authored or synthetic examples: fabricating this data would contradict the project's own thesis. It turns on the moment E3 produces real sessions.
+- **The corrections corpus got its gallery, honestly empty.** `corpus.ts` and a corpus view are built and reachable from the About overlay (corrections corpus, n=0) — but seeded with zero entries. The file is explicitly documented as never to be populated with authored or synthetic examples: fabricating this data would contradict the project’s own thesis. It turns on the moment E3 produces real sessions.
 
 What was explicitly *not* done: no participant sessions were run, and none were simulated. Recruiting and interviewing real people is outside what an implementation pass can produce, and inventing "real" corrections would be the exact failure mode this project exists to argue against. The study (E3, STUDY.md) remains the gap between "very good argument" and "research contribution."
 
@@ -486,7 +491,7 @@ A zero-attachment review found that the project's most original interaction — 
 
 Decision: rename the project **Second Draft** (later renamed again — see E6). Primary research question reframed to: *when software narrates a person's life from their archive, what does the person need in order to contest, correct, and co-own that story?* The original question survives as the first domain instance.
 
-Consequences implemented: Maya's probe cut from five chapters to the three that teach the grammar (the cut chapters remain documented in data.ts); the opening now shows a struck sentence with its human correction before anything else; the system now writes a literal second draft — revisions led by the reader's corrections, first-draft claims kept visible as scars; drafts are printable, scars included. "Cultural Drift" demoted to internal shorthand (see LANGUAGE.md).
+Consequences implemented: Maya’s probe was cut from five chapters to the three that teach the grammar; the first claim opens directly into inspectable evidence; striking creates a literal hierarchy inversion in the active draft; the system writes a second draft led by the reader’s corrections; drafts are printable with scars included. Cultural Drift was demoted to internal shorthand (see LANGUAGE.md).
 
 Status: implemented. The study (E3) should now also harvest a corrections corpus — the struck sentences and what people said instead — as a primary research artifact.
 
@@ -519,8 +524,10 @@ Hypotheses at risk: H4 (recognition over generation), H5 (shifts inferable from 
 15. Sellen, A. J., & Whittaker, S. (2010). Beyond Total Capture: A Constructive Critique of Lifelogging. *Communications of the ACM*, 53(5), 70–77.
 16. Bourdieu, P. (1984). *Distinction: A Social Critique of the Judgement of Taste*. Harvard University Press.
 17. Peterson, R. A., & Kern, R. M. (1996). Changing Highbrow Taste: From Snob to Omnivore. *American Sociological Review*, 61(5), 900–907.
+18. Bishop, S., & Kant, T. (2023). Algorithmic autobiographies and fictions: A digital method. *Sociology*, 57(5). https://doi.org/10.1177/00380261221146403
+19. Dash, A., Das, S., Kirsten, E., et al. (2026). The Algorithmic Self-Portrait: Deconstructing Memory in ChatGPT. *Proceedings of the ACM Web Conference 2026*, 3471–3482. https://doi.org/10.1145/3774904.3792671
 
-Citation hygiene: [1], [7], [8], [14] verified online in July 2026 (E5); [2–5] located via the same search with venue details from result records; [6], [11–13], [15–17] are canonical works cited from field knowledge — verify page numbers before any formal submission. Entries [8] and [9] have incomplete author records here; complete them from the DOIs before citing formally.
+Citation hygiene: [1], [7], [8], [14], [18], and [19] verified online in July 2026; [2–5] located via the same search with venue details from result records; [6], [11–13], [15–17] are canonical works cited from field knowledge — verify page numbers before any formal submission. Entries [8] and [9] still have incomplete author records here and must be completed before formal submission.
 
 ---
 
